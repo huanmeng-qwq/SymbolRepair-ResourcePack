@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Pack Files
-        run: cat VERSION | xargs -I {}  zip -r target/SymbolRepair-{}.zip assets pack.png pack.mcmeta
+        run: cat VERSION | xargs -I {} zip -r target/SymbolRepair-{}.zip assets pack.png pack.mcmeta
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
