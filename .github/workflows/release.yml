@@ -1,0 +1,22 @@
+name: Release ResourcePack
+
+on:
+  # 支持手动触发构建
+  workflow_dispatch:
+  release:
+    # 创建release的时候触发
+    types: [ published ]
+
+jobs:
+  build:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Pack Files
+        run: cat VERSION | xargs -I {} zip -r "{}.zip" assets pack.png pack.mcmeta
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Upload Zip files
+          path: target/*
